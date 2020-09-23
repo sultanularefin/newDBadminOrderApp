@@ -491,21 +491,43 @@ class AdminFirebaseFoodBloc implements Bloc {
       List<String> documents = snapshot.docs.map((documentSnapshot) =>
       documentSnapshot.id).toList();
 
-//      print('documents are [Ingredient Documents] at food Gallery Block : ${documents.length}');
 
 
+      List<NewIngredient> ingredientImageURLUpdated = new List<NewIngredient>();
+      ingItems.forEach((oneIngItem) async {
+        String fileName2  = oneIngItem.imageURL;
 
-      ingItems.forEach((doc) {
-//        print('one Extra . . . . . . . name: ${doc.ingredientName} documentID: ${doc.documentId}');
-//
-//        print('one Extra --- * --- * --- * . . . . . . . imageURL: ${doc.imageURL}');
+        NewIngredient tempIngredient =oneIngItem;
+        print('fileName2 =============> : $fileName2');
+
+        StorageReference storageReferenceForIngredientImage = storage
+            .ref()
+            .child(fileName2);
+
+        String newimageURL = await storageReferenceForIngredientImage.getDownloadURL();
+        print('newimageURL =============> : $newimageURL');
+
+
+        tempIngredient.imageURL= newimageURL;
+
+        ingredientImageURLUpdated.add(tempIngredient);
 
       }
       );
 
+      ingredientImageURLUpdated.forEach((oneIngItem)  {
+        print('oneIngItem.imageURL => => => :  ${oneIngItem.imageURL}');
+
+      });
+
+      // ingItems = ingItems.map((oneIngredient,index) =>
+      //     NewIngredient.ingredientImageDataAdd
+      //       (oneIngredient, imageURLs)
+      // ).toList();
 
 
-      _allExtraIngredients = ingItems;
+
+      _allExtraIngredients = ingredientImageURLUpdated;
 
       _allExtraIngredientItemsController.sink.add(_allExtraIngredients);
 
@@ -577,7 +599,46 @@ class AdminFirebaseFoodBloc implements Bloc {
     print('sauce documents are (length): ${documents.length}');
 
 
-    sauceItems.forEach((oneSauceItem) {
+
+
+    // x----1
+
+
+
+
+    List<SauceItem> sauceItemImageURLUpdated = new List<SauceItem>();
+    sauceItems.forEach((oneSauceItem) async {
+      String fileName2  = oneSauceItem.imageURL;
+
+      SauceItem tempSauceItem =oneSauceItem;
+      print('fileName2 =============> : $fileName2');
+
+      StorageReference storageReferenceForIngredientImage = storage
+          .ref()
+          .child(fileName2);
+
+      String newimageURL = await storageReferenceForIngredientImage.getDownloadURL();
+      print('newimageURL Sauce =============> : $newimageURL');
+
+
+      tempSauceItem.imageURL= newimageURL;
+
+      sauceItemImageURLUpdated.add(tempSauceItem);
+
+    }
+    );
+
+    sauceItemImageURLUpdated.forEach((oneSauceItem)  {
+      print('oneSauceItem.imageURL => => => :  ${oneSauceItem.imageURL}');
+
+    });
+
+    // x ----2
+
+
+
+
+    sauceItemImageURLUpdated.forEach((oneSauceItem) {
       print('oneSauceItem.sauceItemName: ${oneSauceItem.sauceItemName}');
       print('oneSauceItem.imageURL: ${oneSauceItem.imageURL}');
       print('Uri.encodeComponent(oneSauceItem.imageURL) ===> '
@@ -594,7 +655,7 @@ class AdminFirebaseFoodBloc implements Bloc {
 
     );
 
-    _allSauceItemsFoodUploadAdminBloc = sauceItems;
+    _allSauceItemsFoodUploadAdminBloc = sauceItemImageURLUpdated;
     _sauceItemsControllerFoodUploadAdmin.sink.add(_allSauceItemsFoodUploadAdminBloc);
   }
 
@@ -726,14 +787,51 @@ class AdminFirebaseFoodBloc implements Bloc {
 
     print('documents.length for cheeseItems: ${documents.length}');
 
+//zx--------------1
 
-    cheeseItems.forEach((oneCheeseItem) {
+
+
+
+    List<CheeseItem> cheeseItemIMageUrlUpdated = new List<CheeseItem>();
+    cheeseItems.forEach((oneCheeseItem) async {
+      String fileName2  = oneCheeseItem.imageURL;
+
+      CheeseItem tempCheeseItem =oneCheeseItem;
+      print('fileName2 =============> : $fileName2');
+
+      StorageReference storageReferenceForIngredientImage = storage
+          .ref()
+          .child(fileName2);
+
+      String newimageURL = await storageReferenceForIngredientImage.getDownloadURL();
+      print('newimageURL Sauce =============> : $newimageURL');
+
+
+      tempCheeseItem.imageURL= newimageURL;
+
+      cheeseItemIMageUrlUpdated.add(tempCheeseItem);
+
+    }
+    );
+
+    cheeseItemIMageUrlUpdated.forEach((oneCheeseItem)  {
+      print('oneSauceItem.imageURL => => => :  ${oneCheeseItem.imageURL}');
+
+    });
+
+
+
+
+    //x1------------1
+
+
+    cheeseItemIMageUrlUpdated.forEach((oneCheeseItem) {
 
       print('oneCheeseItem.cheeseItemName: ${oneCheeseItem.cheeseItemName}');
 
     });
 
-    _allCheeseItemsFoodUploadAdminBloc  = cheeseItems;
+    _allCheeseItemsFoodUploadAdminBloc  = cheeseItemIMageUrlUpdated;
     _cheeseItemsControllerFoodUploadAdmin.sink.add(_allCheeseItemsFoodUploadAdminBloc);
 
   }
