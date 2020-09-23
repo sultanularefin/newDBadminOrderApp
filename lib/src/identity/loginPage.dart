@@ -523,8 +523,8 @@ class _LoginPageState extends State<LoginPage> {
               end: Alignment.centerRight,
               colors: [
 
-                Colors.pinkAccent,
-                Colors.deepOrange,
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
 
 //                  Color(0xfffbb448),
 //                  Color(0xfff7892b)
@@ -574,8 +574,8 @@ class _LoginPageState extends State<LoginPage> {
           ),
           children: [
             TextSpan(
-              text: ' old ',
-              style: TextStyle(color: Colors.black, fontSize: 30),
+              text: ' new ',
+              style: TextStyle(color: Colors.indigoAccent, fontSize: 30),
             ),
             TextSpan(
               text: 'database',

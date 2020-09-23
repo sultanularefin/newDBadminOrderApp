@@ -710,8 +710,8 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
                       child: Text(
                         // 'order app for old db clent app also uses the same db'.toUpperCase(),
                         'this application is an admin app for uploading food items for a restaurant system,'
-                            ' it is based on, the new database'
-                            'the same database is used by the client application which '
+                            ' it is based on, the new database. '
+                            'The same database is used by the client application which '
                             'is partially developped and also the new order app.',
 
                         textAlign: TextAlign.justify,

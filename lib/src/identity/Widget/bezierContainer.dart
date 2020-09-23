@@ -30,9 +30,10 @@ class BezierContainer extends StatelessWidget {
 //                  Color(0xfffbb448),
 //
 //                  Color(0xffe46b10)
-
-                  Colors.pinkAccent,
-                  Colors.deepOrange,
+                  Colors.lightGreenAccent,
+                  Colors.lightBlueAccent,
+                  // Colors.pinkAccent,
+                  // Colors.deepOrange,
 
 
                 ]
