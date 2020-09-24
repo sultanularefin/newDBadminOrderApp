@@ -505,7 +505,7 @@ class AdminFirebaseFoodBloc implements Bloc {
             .child(fileName2);
 
         String newimageURL = await storageReferenceForIngredientImage.getDownloadURL();
-        print('newimageURL =============> : $newimageURL');
+        print('newimageURL ingredient =============> : $newimageURL');
 
 
         tempIngredient.imageURL= newimageURL;
@@ -611,7 +611,7 @@ class AdminFirebaseFoodBloc implements Bloc {
       String fileName2  = oneSauceItem.imageURL;
 
       SauceItem tempSauceItem =oneSauceItem;
-      print('fileName2 =============> : $fileName2');
+      print('fileName2 sauce Item.. =============> : $fileName2');
 
       StorageReference storageReferenceForIngredientImage = storage
           .ref()
@@ -804,7 +804,7 @@ class AdminFirebaseFoodBloc implements Bloc {
           .child(fileName2);
 
       String newimageURL = await storageReferenceForIngredientImage.getDownloadURL();
-      print('newimageURL Sauce =============> : $newimageURL');
+      print('newimageURL cheese =============> : $newimageURL');
 
 
       tempCheeseItem.imageURL= newimageURL;
