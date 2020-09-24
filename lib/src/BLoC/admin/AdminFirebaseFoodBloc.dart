@@ -493,8 +493,10 @@ class AdminFirebaseFoodBloc implements Bloc {
 
 
 
-      List<NewIngredient> ingredientImageURLUpdated = new List<NewIngredient>();
+      // List<NewIngredient> ingredientImageURLUpdated = new List<NewIngredient>();
+
       ingItems.forEach((oneIngItem) async {
+
         String fileName2  = oneIngItem.imageURL;
 
         NewIngredient tempIngredient =oneIngItem;
@@ -505,17 +507,24 @@ class AdminFirebaseFoodBloc implements Bloc {
             .child(fileName2);
 
         String newimageURL = await storageReferenceForIngredientImage.getDownloadURL();
-        print('newimageURL ingredient =============> : $newimageURL');
+        // print('newimageURL ingredient =============> : $newimageURL');
 
 
-        tempIngredient.imageURL= newimageURL;
+        oneIngItem.imageURL= newimageURL;
 
-        ingredientImageURLUpdated.add(tempIngredient);
+        // print('oneIngItem.imageURL =============> : ${oneIngItem.imageURL}');
 
-      }
-      );
+        // ingredientImageURLUpdated.add(tempIngredient);
+      });
 
-      ingredientImageURLUpdated.forEach((oneIngItem)  {
+      logger.i('ingItems.length ${ingItems.length}');
+
+
+
+
+
+      ingItems.forEach((oneIngItem)  {
+
         print('oneIngItem.imageURL => => => :  ${oneIngItem.imageURL}');
 
       });
@@ -527,7 +536,7 @@ class AdminFirebaseFoodBloc implements Bloc {
 
 
 
-      _allExtraIngredients = ingredientImageURLUpdated;
+      _allExtraIngredients = ingItems;
 
       _allExtraIngredientItemsController.sink.add(_allExtraIngredients);
 
@@ -606,11 +615,21 @@ class AdminFirebaseFoodBloc implements Bloc {
 
 
 
-    List<SauceItem> sauceItemImageURLUpdated = new List<SauceItem>();
+    // List<SauceItem> sauceItemImageURLUpdated = new List<SauceItem>();
+
+    // selectedFoodCheckForListToSet.forEach((oneFood) {
+    //
+    //   oneFood.quantity= oneFood.quantity-1; //initially 1 that was incremented in the previous forEach loop.
+    //   print('oneFood.quantity SS: ${oneFood.quantity}');
+    //
+    // });
+
     sauceItems.forEach((oneSauceItem) async {
       String fileName2  = oneSauceItem.imageURL;
 
-      SauceItem tempSauceItem =oneSauceItem;
+      // SauceItem tempSauceItem = new SauceItem();
+      //
+      // tempSauceItem= oneSauceItem;
       print('fileName2 sauce Item.. =============> : $fileName2');
 
       StorageReference storageReferenceForIngredientImage = storage
@@ -618,17 +637,20 @@ class AdminFirebaseFoodBloc implements Bloc {
           .child(fileName2);
 
       String newimageURL = await storageReferenceForIngredientImage.getDownloadURL();
-      print('newimageURL Sauce =============> : $newimageURL');
+      // print('newimageURL Sauce =============> : $newimageURL');
 
 
-      tempSauceItem.imageURL= newimageURL;
+      oneSauceItem.imageURL= newimageURL;
+      // tempSauceItem.imageURL= newimageURL;
 
-      sauceItemImageURLUpdated.add(tempSauceItem);
+      // sauceItemImageURLUpdated.add(tempSauceItem);
 
     }
     );
 
-    sauceItemImageURLUpdated.forEach((oneSauceItem)  {
+    logger.i('sauceItems.length ${ sauceItems.length}');
+
+    sauceItems.forEach((oneSauceItem)  {
       print('oneSauceItem.imageURL => => => :  ${oneSauceItem.imageURL}');
 
     });
@@ -638,7 +660,7 @@ class AdminFirebaseFoodBloc implements Bloc {
 
 
 
-    sauceItemImageURLUpdated.forEach((oneSauceItem) {
+    sauceItems.forEach((oneSauceItem) {
       print('oneSauceItem.sauceItemName: ${oneSauceItem.sauceItemName}');
       print('oneSauceItem.imageURL: ${oneSauceItem.imageURL}');
       print('Uri.encodeComponent(oneSauceItem.imageURL) ===> '
@@ -655,7 +677,7 @@ class AdminFirebaseFoodBloc implements Bloc {
 
     );
 
-    _allSauceItemsFoodUploadAdminBloc = sauceItemImageURLUpdated;
+    _allSauceItemsFoodUploadAdminBloc = sauceItems;
     _sauceItemsControllerFoodUploadAdmin.sink.add(_allSauceItemsFoodUploadAdminBloc);
   }
 
@@ -804,7 +826,7 @@ class AdminFirebaseFoodBloc implements Bloc {
           .child(fileName2);
 
       String newimageURL = await storageReferenceForIngredientImage.getDownloadURL();
-      print('newimageURL cheese =============> : $newimageURL');
+     // print('newimageURL cheese =============> : $newimageURL');
 
 
       tempCheeseItem.imageURL= newimageURL;
@@ -814,8 +836,14 @@ class AdminFirebaseFoodBloc implements Bloc {
     }
     );
 
+
+    logger.i('cheeseItemIMageUrlUpdated.length ${cheeseItemIMageUrlUpdated.length}');
+
+
+
+
     cheeseItemIMageUrlUpdated.forEach((oneCheeseItem)  {
-      print('oneSauceItem.imageURL => => => :  ${oneCheeseItem.imageURL}');
+      print('oneCheeseItem.imageURL => => => :  ${oneCheeseItem.imageURL}');
 
     });
 
