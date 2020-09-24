@@ -821,7 +821,83 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
 //                      Text('history'),
                   ],
                 )),
-            onTap: () {
+            onTap: () async {
+
+
+
+//          final Permission permission= Permission.contacts;
+              final Permission permission= Permission.camera;
+              print('at Future<void> requestPermission $permission');
+
+              final status = await permission.request();
+
+              print('status: $status');
+
+              switch (status) {
+                case PermissionStatus.granted:
+                  print('PermissionStatus.granted');
+                  // do something
+                  break;
+                case PermissionStatus.denied:
+                  print('PermissionStatus.denied');
+                  // do something
+                  break;
+                case PermissionStatus.restricted:
+                  print('PermissionStatus.restricted');
+                  // do something
+                  break;
+                case PermissionStatus.permanentlyDenied:
+                  print('PermissionStatus.permanentlyDenied');
+                  // do something
+                  break;
+                case PermissionStatus.undetermined:
+                  print('PermissionStatus.undetermined');
+                  // do something
+                  break;
+                default:
+              }
+
+              /// Android: Nothing
+              /// iOS: Photos
+              // static const photos = Permission._(9);
+
+
+              // final Permission permission2= Permission.photos;
+              // print('at Future<void> requestPermission $permission2');
+              //
+              // final status2 = await permission2.request();
+              //
+              // print('status: $status');
+              //
+              // switch (status) {
+              //   case PermissionStatus.granted:
+              //     print('PermissionStatus.granted');
+              //     // do something
+              //     break;
+              //   case PermissionStatus.denied:
+              //     print('PermissionStatus.denied');
+              //     // do something
+              //     break;
+              //   case PermissionStatus.restricted:
+              //     print('PermissionStatus.restricted');
+              //     // do something
+              //     break;
+              //   case PermissionStatus.permanentlyDenied:
+              //     print('PermissionStatus.permanentlyDenied');
+              //     // do something
+              //     break;
+              //   case PermissionStatus.undetermined:
+              //     print('PermissionStatus.undetermined');
+              //     // do something
+              //     break;
+              //   default:
+              // }
+
+
+
+
+
+
               Navigator.of(context).push(
                 PageRouteBuilder(
                   opaque: false,
@@ -897,7 +973,44 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
 //                      Text('history'),
                   ],
                 )),
-            onTap: () {
+            onTap: () async {
+
+
+
+
+//          final Permission permission= Permission.contacts;
+              final Permission permission= Permission.camera;
+              print('at Future<void> requestPermission $permission');
+
+              final status = await permission.request();
+
+              print('status: $status');
+
+              switch (status) {
+                case PermissionStatus.granted:
+                  print('PermissionStatus.granted');
+                  // do something
+                  break;
+                case PermissionStatus.denied:
+                  print('PermissionStatus.denied');
+                  // do something
+                  break;
+                case PermissionStatus.restricted:
+                  print('PermissionStatus.restricted');
+                  // do something
+                  break;
+                case PermissionStatus.permanentlyDenied:
+                  print('PermissionStatus.permanentlyDenied');
+                  // do something
+                  break;
+                case PermissionStatus.undetermined:
+                  print('PermissionStatus.undetermined');
+                  // do something
+                  break;
+                default:
+              }
+
+
               Navigator.of(context).push(
                 PageRouteBuilder(
                   opaque: false,
@@ -964,7 +1077,44 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
 //                      Text('history'),
                   ],
                 )),
-            onTap: () {
+            onTap: () async {
+
+
+
+
+//          final Permission permission= Permission.contacts;
+              final Permission permission= Permission.camera;
+              print('at Future<void> requestPermission $permission');
+
+              final status = await permission.request();
+
+              print('status: $status');
+
+              switch (status) {
+                case PermissionStatus.granted:
+                  print('PermissionStatus.granted');
+                  // do something
+                  break;
+                case PermissionStatus.denied:
+                  print('PermissionStatus.denied');
+                  // do something
+                  break;
+                case PermissionStatus.restricted:
+                  print('PermissionStatus.restricted');
+                  // do something
+                  break;
+                case PermissionStatus.permanentlyDenied:
+                  print('PermissionStatus.permanentlyDenied');
+                  // do something
+                  break;
+                case PermissionStatus.undetermined:
+                  print('PermissionStatus.undetermined');
+                  // do something
+                  break;
+                default:
+              }
+
+
               Navigator.of(context).push(
                 PageRouteBuilder(
                   opaque: false,
@@ -1030,7 +1180,43 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
 //                      Text('history'),
                   ],
                 )),
-            onTap: () {
+            onTap: () async {
+
+
+
+//          final Permission permission= Permission.contacts;
+              final Permission permission= Permission.camera;
+              print('at Future<void> requestPermission $permission');
+
+              final status = await permission.request();
+
+              print('status: $status');
+
+              switch (status) {
+                case PermissionStatus.granted:
+                  print('PermissionStatus.granted');
+                  // do something
+                  break;
+                case PermissionStatus.denied:
+                  print('PermissionStatus.denied');
+                  // do something
+                  break;
+                case PermissionStatus.restricted:
+                  print('PermissionStatus.restricted');
+                  // do something
+                  break;
+                case PermissionStatus.permanentlyDenied:
+                  print('PermissionStatus.permanentlyDenied');
+                  // do something
+                  break;
+                case PermissionStatus.undetermined:
+                  print('PermissionStatus.undetermined');
+                  // do something
+                  break;
+                default:
+              }
+
+              
               Navigator.of(context).push(
                 PageRouteBuilder(
                   opaque: false,
