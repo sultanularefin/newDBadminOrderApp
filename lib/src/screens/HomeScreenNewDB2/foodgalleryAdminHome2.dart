@@ -4,10 +4,8 @@
 // package/ external dependency files
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:adminorderappnewdb/src/BLoC/admin/AdminFirebaseCheeseBloc.dart';
-// import 'package:adminorderappnewdb/src/BLoC/admin/AdminFirebaseFoodBloc.dart';
-// import 'package:adminorderappnewdb/src/BLoC/admin/AdminFirebaseIngredientBloc.dart';
-// import 'package:adminorderappnewdb/src/BLoC/admin/AdminFirebaseSauceBloc.dart';
+
+
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:adminorderappnewdb/src/BLoC/admin/AdminFirebaseCheeseBloc.dart';
 import 'package:adminorderappnewdb/src/BLoC/admin/AdminFirebaseFoodBloc.dart';
@@ -24,9 +22,9 @@ import 'package:adminorderappnewdb/src/DataLayer/models/CustomerInformation.dart
 import 'package:adminorderappnewdb/src/DataLayer/models/SauceItem.dart';
 
 // MODEL'S IMPORT BEGINS HERE.
-import 'package:adminorderappnewdb/src/DataLayer/models/SelectedFood.dart';
+
 import 'package:adminorderappnewdb/src/DataLayer/models/NewIngredient.dart';
-import 'package:adminorderappnewdb/src/DataLayer/models/Order.dart';
+
 import 'package:adminorderappnewdb/src/screens/adminFirebase/admin_firebase_cheese.dart';
 import 'package:adminorderappnewdb/src/screens/adminFirebase/admin_firebase_food.dart';
 import 'package:adminorderappnewdb/src/screens/adminFirebase/admin_firebase_ingredient.dart';
@@ -95,29 +93,11 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
 
   _FoodGalleryState(/*{firestore} */);
 
-//  final _formKey = GlobalKey();
 
-//  final _formKey = GlobalKey<FormState>();
-
-  String _searchString = '';
-  String _currentCategory = "pizza";
-  String _firstTimeCategoryString = "";
 
 //  this can be defined in Shopping cart page like old way
   int _totalCount = 0;
-  List<SelectedFood> allSelectedFoodGallery = [];
-  double totalPriceState = 0;
 
-  Order orderFG = new Order(
-    selectedFoodInOrder: [],
-    selectedFoodListLength: 0,
-    orderTypeIndex: 0, // phone, takeaway, delivery, dinning.
-    paymentTypeIndex:
-    2, //2; PAYMENT OPTIONS ARE LATER(0), CASH(1) CARD(2||Default)
-    orderingCustomer: null,
-    totalPrice: 0,
-    page: 0,
-  );
 
   String _batteryLevel = 'Unknown battery level.';
 
@@ -472,77 +452,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
     );
   }
 
-  Widget _buildCategoryRow(
-      /*DocumentSnapshot document*/
-      NewCategoryItem oneCategory,
-      int index) {
-//    final DocumentSnapshot document = snapshot.data.documents[index];
-    final String categoryName = oneCategory.categoryName;
 
-    if (_currentCategory.toLowerCase() == categoryName.toLowerCase()) {
-      return ListTile(
-        contentPadding: EdgeInsets.fromLTRB(30, 6, 5, 26),
-//    FittedBox(fit:BoxFit.fitWidth, stringifiedFoodItemIngredients
-        title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                categoryName.toLowerCase().length > 8
-                    ? categoryName.toLowerCase().substring(0, 8) + '..'
-                    : categoryName.toLowerCase(),
-                style: TextStyle(
-                  fontFamily: 'poppins',
-                  fontSize: 24,
-                  fontWeight: FontWeight.normal,
-                  color: Color(0xff000000),
-                ),
-              ),
-              CustomPaint(
-                size: Size(0, 19),
-                painter: MyPainter(),
-              )
-            ]),
-        onTap: () {
-          // Add 9 lines from here...
-          print('onTap pressed');
-          print('index: $index');
-          setState(() {
-            _currentCategory = categoryName;
-            _firstTimeCategoryString = categoryName;
-            _searchString = '';
-          });
-        }, // ... to here.
-      );
-    } else {
-      return ListTile(
-        contentPadding: EdgeInsets.fromLTRB(20, 6, 5, 6),
-
-        title: Text(
-          categoryName.toLowerCase(),
-//    Text(categoryName.substring(0, 2),
-          style: TextStyle(
-            fontFamily: 'poppins',
-
-            fontSize: 20,
-            fontWeight: FontWeight.normal,
-//                    fontStyle: FontStyle.italic,
-            color: Color(0xff000000),
-          ),
-        ),
-        onTap: () {
-          // Add 9 lines from here...
-          print('onTap pressed');
-          print('index: $index');
-          setState(() {
-            _currentCategory = categoryName;
-            _firstTimeCategoryString = categoryName;
-            _searchString = '';
-          });
-        }, // ... to here.
-      );
-    }
-  }
 
   Widget drawerTest(BuildContext context) {
 //    key: _drawerKey;
@@ -626,7 +536,8 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
       textAlign: TextAlign.justify,
       text: TextSpan(
           text: ' you will need an '
-              'emulator or big tablet for using this application,',
+              'app was designed for 10-inch tablet (e.g. Samsung Galaxy '
+              'Tab S6 or emulators where screen size is 10-inch ) ',
           style:
           TextStyle( //Theme.of(context).textTheme.display1,
             fontSize: 30,
@@ -1237,11 +1148,6 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
     );
   }
 
-
-// HELPER METHOD tryCast Number (1)
-  int test1(SelectedFood x) {
-    return x.quantity;
-  }
 }
 
 

@@ -34,7 +34,7 @@ import 'package:adminorderappnewdb/src/utilities/screen_size_reducers.dart';
 
 import 'package:adminorderappnewdb/src/BLoC/bloc_provider.dart';
 import 'package:adminorderappnewdb/src/BLoC/clientPart/identity_bloc.dart';
-import 'package:adminorderappnewdb/src/screens/foodGallery/foodgalleryAdminHome2.dart';
+import 'package:adminorderappnewdb/src/screens/HomeScreenNewDB2/foodgalleryAdminHome2.dart';
 
 //import 'package:adminorderappnewdb/src/BLoC/app_bloc.dart';
 //import 'package:adminorderappnewdb/src/BLoC/bloc_provider2.dart';

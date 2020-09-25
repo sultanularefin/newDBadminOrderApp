@@ -20,7 +20,6 @@ import 'package:adminorderappnewdb/src/DataLayer/models/NewCategoryItem.dart';
 import 'package:logger/logger.dart';
 
 
-import 'package:adminorderappnewdb/src/DataLayer/api/firebase_client.dart';
 
 
 import 'dart:async';
