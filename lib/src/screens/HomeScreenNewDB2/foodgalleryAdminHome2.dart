@@ -535,8 +535,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
     return RichText(
       textAlign: TextAlign.justify,
       text: TextSpan(
-          text: ' you will need an '
-              'app was designed for 10-inch tablet (e.g. Samsung Galaxy '
+          text: 'the app was designed for 10-inch tablet (e.g. Samsung Galaxy '
               'Tab S6 or emulators where screen size is 10-inch ) ',
           style:
           TextStyle( //Theme.of(context).textTheme.display1,
@@ -544,7 +543,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
             fontWeight: FontWeight.w700,
             color:
             //Color(0xffe46b10),
-            Colors.pinkAccent,
+            Colors.lightGreenAccent,
 //            Colors.deepOrange,
           ),
           children: [
@@ -582,7 +581,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
           Container(
             // color:Colors.pink,
               height:
-              displayHeight(context)/3.5,
+              displayHeight(context)/3,
               // 6 for spacing padding at top for .
               width: displayWidth(context)-
 
@@ -594,51 +593,74 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
               EdgeInsets.only(left: 4, top: 3, bottom: 3, right: 3),
               child:
               Container(
-                // color:Colors.blueGrey,
+
                 alignment: Alignment.center,
                 width: displayWidth(context) / 1.7,
-                child:  Column(
+                decoration: BoxDecoration(
+                  // color: Color(0xffFFE18E),
+                  color:Colors.blueGrey,
 
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      // 'about this app: '.toUpperCase(),
-                      'about this app: ',
-                      style: TextStyle(
-                        // color: Colors.blueGrey,
-                        color: Color(0xff07D607),
-                        fontFamily: 'poppins',
-                        fontWeight: FontWeight.normal,
-                        fontSize: 31,
-                      ),
+
+                    border: Border.all(
+                      color: Colors.black,
+                      style: BorderStyle.solid,
+                      width: 0.2,
                     ),
 
-                    Container(
-                      padding:
-                      EdgeInsets.only(left: 4, top: 5, bottom: 0, right: 4),
+                    borderRadius: BorderRadius.all(Radius.circular(14)),
+                  ),
 
-                      child: Text(
-                        // 'order app for old db clent app also uses the same db'.toUpperCase(),
-                        'this application is an admin app for uploading food items for a restaurant system,'
-                            ' it is based on, the new database. '
-                            'The same database is used by the client application which '
-                            'is partially developped and also the new order app.',
 
-                        textAlign: TextAlign.justify,
+
+                  // color:Colors.blueGrey,
+
+                  child:  Column(
+
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        // 'about this app: '.toUpperCase(),
+                        'about this app: ',
                         style: TextStyle(
-
-                          color: Colors.black87,
+                          // color: Colors.blueGrey,
+                          color: Color(0xff07D607),
                           fontFamily: 'poppins',
                           fontWeight: FontWeight.normal,
-                          fontSize: 25,
+                          fontSize: 39,
                         ),
                       ),
-                    ),
 
-                    titleWidget(),
-                  ],
-                ),
+                      Container(
+                        padding:
+                        EdgeInsets.only(left: 4, top: 5, bottom: 0, right: 4),
+
+                        child: Text(
+                          // 'order app for old db clent app also uses the same db'.toUpperCase(),
+                          'this application is an admin app for uploading food items for a restaurant system,'
+                              ' it is based on, the new database. '
+                              'The same database is used by the client application which '
+                              'is partially developped and also the new order app.',
+
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+
+                            color: Colors.black87,
+                            fontFamily: 'poppins',
+                            fontWeight: FontWeight.normal,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+
+                      Container(
+
+
+
+                          child: titleWidget()),
+                    ],
+                  ),
+
                 //
                 // Text:description:,
               )
@@ -833,7 +855,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
           ),
           ListTile(
             title: Container(
-                // color: Color(0xffFFE18E),
+              // color: Color(0xffFFE18E),
                 color: Color(0xffFFE18E), height: 90,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -874,10 +896,10 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
                         'add new ngredient '.toUpperCase(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'historia',
+                            fontSize: 18,
+                            fontFamily: 'historia',
                             fontWeight: FontWeight.bold,
-                          color: Colors.blueGrey
+                            color: Colors.blueGrey
                         ),
                       ),
                     )
@@ -944,7 +966,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
           ),
           ListTile(
             title: Container(
-                // color: Color(0xffFFE18E),
+              // color: Color(0xffFFE18E),
                 color: Color(0xffFFE18E), height: 90,
 
                 child: Row(
@@ -978,8 +1000,8 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
                         'add new cheese '.toUpperCase(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'historia',
+                            fontSize: 18,
+                            fontFamily: 'historia',
                             fontWeight: FontWeight.bold,
                             color: Colors.blueGrey
                         ),
@@ -1048,7 +1070,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
           ),
           ListTile(
             title: Container(
-                // color: Color(0xffFFE18E),
+              // color: Color(0xffFFE18E),
                 color: Color(0xffFFE18E), height: 90,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1081,9 +1103,9 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
                         'add new sauce'.toUpperCase(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'historia',
-                          fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            fontFamily: 'historia',
+                            fontWeight: FontWeight.bold,
                             color: Colors.blueGrey
                         ),
                       ),
@@ -1127,7 +1149,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
                 default:
               }
 
-              
+
               Navigator.of(context).push(
                 PageRouteBuilder(
                   opaque: false,

@@ -21,7 +21,7 @@ class AdminFirebaseSauceBloc implements Bloc {
   var logger = Logger(
     printer: PrettyPrinter(),
   );
-  
+
 
   File _image2;
   String _firebaseUserEmail;
