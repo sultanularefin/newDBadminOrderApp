@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.0
  #  flutter_neumorphic: ^2.0.1
   flutter_neumorphic: ^3.0.1
+  path_provider: ^1.6.18
   #  google_fonts: ^1.0.0
   #  path_provider: '>=1.0.0 <2.0.0'
   #  path_provider: ^1.6.11
