@@ -2,6 +2,7 @@
 //
 //```dart
 // package/ external dependency files
+import 'package:adminorderappnewdb/src/BLoC/clientPart/identity_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -140,6 +141,64 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
   var logger = Logger(
     printer: PrettyPrinter(),
   );
+
+
+
+  Future<void> logout(BuildContext context2) async {
+    print('what i do is : ||Logout||');
+
+
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.clear();
+//    THIS ALSO WORKS
+/*
+    Navigator.push(
+      context2,
+      MaterialPageRoute(builder: (context2) => WelcomePage()),
+    );
+    */
+
+//    return Navigator.push(context,
+//
+//        MaterialPageRoute(builder: (context)
+//        => FoodItemDetails(oneFoodItemData:oneFoodItem))
+//    );
+
+
+
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        opaque: false,
+        transitionDuration: Duration(milliseconds: 900),
+        pageBuilder: (_, __, ___) =>
+            BlocProvider<IdentityBloc>(
+              bloc: IdentityBloc(),
+              child: WelcomePage(),
+            ),
+      ),
+    );
+
+
+    /*
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (BuildContext context) {
+          return BlocProvider<IdentityBloc>(
+              bloc: IdentityBloc(),
+//AppBloc(emptyFoodItemWithDocID,loginPageIngredients,fromWhichPage:0),
+              child: WelcomePage(fromWhicPage: 'foodGallery2'));
+/*
+                                  return BlocProvider<FoodGalleryBloc>(
+                                      bloc: FoodGalleryBloc(),
+                                      child: FoodGallery2()
+
+                                  );
+                                  */
+        }), (Route<dynamic> route) => false);
+
+    */
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -408,6 +467,80 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
               */
                       // ),
                     ),
+
+                    SizedBox(
+                      height: 30,
+                    ),
+                    ListTile(
+                      title: Container(
+                          color: Color(0xffFFE18E),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
+                                child:
+                                Icon(
+                                  Icons.portrait,
+                                  size: displayWidth(context) / 19,
+                                  color: Color(0xff707070),
+                                ),
+
+
+
+
+
+
+
+                              ),
+
+                              Container(
+//                          width: displayWidth(context)/3.9,
+                                padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+
+                                child: Text(
+//                                  'maksamatta'.toUpperCase(),
+                                  'log out'.toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'poppins',
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              )
+//                      Text('history'),
+                            ],
+                          )),
+                      onTap: () {
+
+
+                        return logout(context);
+
+/*
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            opaque: false,
+                            transitionDuration: Duration(milliseconds: 900),
+                            pageBuilder: (_, __, ___) =>
+                                BlocProvider<IdentityBloc>(
+                                  bloc: IdentityBloc(),
+                                  child: WelcomePage(),
+                                ),
+                          ),
+                        );
+
+                        */
+
+
+                      },
+                    ),
+                    SizedBox(
+                      height: 100,
+                    ),
+
+
+
                     ListTile(
                       title: Container(
                           color: Color(0xffFFE18E),
@@ -532,162 +665,161 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
 
 
   Widget titleWidget() {
-    return RichText(
-      textAlign: TextAlign.justify,
-      text: TextSpan(
-          text: 'the app was designed for 10-inch tablet (e.g. Samsung Galaxy '
-              'Tab S6 or emulators where screen size is 10-inch ) ',
-          style:
-          TextStyle( //Theme.of(context).textTheme.display1,
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
-            color:
-            //Color(0xffe46b10),
-            Colors.lightGreenAccent,
+    return
+       RichText(
+        textAlign: TextAlign.justify,
+        text: TextSpan(
+            text: 'the app was designed for 10-inch tablet (e.g. Samsung Galaxy '
+                'Tab S6 or emulators where screen size is 10-inch ) ',
+            style:
+            TextStyle( //Theme.of(context).textTheme.display1,
+              fontSize: 30,
+              fontWeight: FontWeight.w700,
+              color:
+              //Color(0xffe46b10),
+              Colors.lightGreenAccent,
 //            Colors.deepOrange,
-          ),
-          children: [
-            TextSpan(
-              text: '  use \'adb push\' to push images then '
-                  '',
-              style: TextStyle(color: Colors.black, fontSize: 30),
             ),
-            TextSpan(
-              text: 'upload to firestore one at a time.',
-              style: TextStyle(
-                  color:
-                  //Color(0xffe46b10),
+            children: [
+              TextSpan(
+                text: '  use \'adb push\' to push images then '
+                    '',
+                style: TextStyle(color: Colors.black, fontSize: 30),
+              ),
+              TextSpan(
+                text: 'upload to firestore one at a time.',
+                style: TextStyle(
+                    color:
+                    //Color(0xffe46b10),
 //                  Colors.pinkAccent,
-                  Colors.deepOrange,
+                    Colors.deepOrange,
 
-                  fontSize: 30),
-            ),
-          ]),
-    );
+                    fontSize: 30),
+              ),
+            ]),
+      )
+    ;
   }
 
 
   Widget navigationButtonsAndDescription(BuildContext context) {
     // final foodGalleryBloc = BlocProvider.of<FoodGalleryBloc>(context);
 
-    return Container(
+    return SingleChildScrollView(
+      child: Container(
 
-      child:
-      Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        child:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
 
-          Container(
-            // color:Colors.pink,
-              height:
-              displayHeight(context)/3,
-              // 6 for spacing padding at top for .
-              width: displayWidth(context)-
+            Container(
+              // color:Colors.pink,
+                height:
+                displayHeight(context)/3,
+                // 6 for spacing padding at top for .
+                width: displayWidth(context)-
 
-                  (MediaQuery.of(context).size.width / 3.8)
-              ,
-              margin: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                    (MediaQuery.of(context).size.width / 3.8)
+                ,
+                margin: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
 
-              padding:
-              EdgeInsets.only(left: 4, top: 3, bottom: 3, right: 3),
-              child:
-              Container(
+                padding:
+                EdgeInsets.only(left: 4, top: 3, bottom: 3, right: 3),
+                child:
+                Container(
 
-                alignment: Alignment.center,
-                width: displayWidth(context) / 1.7,
-                decoration: BoxDecoration(
-                  // color: Color(0xffFFE18E),
-                  color:Colors.blueGrey,
+                  alignment: Alignment.center,
+                  width: displayWidth(context) / 1.7,
+                  decoration: BoxDecoration(
+                    // color: Color(0xffFFE18E),
+                    color:Colors.blueGrey,
 
+                      border: Border.all(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                        width: 0.2,
+                      ),
 
-                    border: Border.all(
-                      color: Colors.black,
-                      style: BorderStyle.solid,
-                      width: 0.2,
+                      borderRadius: BorderRadius.all(Radius.circular(14)),
                     ),
 
-                    borderRadius: BorderRadius.all(Radius.circular(14)),
-                  ),
 
 
+                    // color:Colors.blueGrey,
 
-                  // color:Colors.blueGrey,
+                    child:  Column(
 
-                  child:  Column(
-
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        // 'about this app: '.toUpperCase(),
-                        'about this app: ',
-                        style: TextStyle(
-                          // color: Colors.blueGrey,
-                          color: Color(0xff07D607),
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 39,
-                        ),
-                      ),
-
-                      Container(
-                        padding:
-                        EdgeInsets.only(left: 4, top: 5, bottom: 0, right: 4),
-
-                        child: Text(
-                          // 'order app for old db clent app also uses the same db'.toUpperCase(),
-                          'this application is an admin app for uploading food items for a restaurant system,'
-                              ' it is based on, the new database. '
-                              'The same database is used by the client application which '
-                              'is partially developped and also the new order app.',
-
-                          textAlign: TextAlign.justify,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          // 'about this app: '.toUpperCase(),
+                          'about this app: ',
                           style: TextStyle(
-
-                            color: Colors.black87,
+                            // color: Colors.blueGrey,
+                            color: Color(0xff07D607),
                             fontFamily: 'poppins',
                             fontWeight: FontWeight.normal,
-                            fontSize: 25,
+                            fontSize: 39,
                           ),
                         ),
-                      ),
 
-                      Container(
+                        Container(
+                          padding:
+                          EdgeInsets.only(left: 4, top: 5, bottom: 0, right: 4),
+
+                          child: Text(
+                            // 'order app for old db clent app also uses the same db'.toUpperCase(),
+                            'this application is an admin app for uploading food items for a restaurant system,'
+                                ' it is based on, the new database. '
+                                'The same database is used by the client application which '
+                                'is partially developped and also the new order app.',
+
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+
+                              color: Colors.black87,
+                              fontFamily: 'poppins',
+                              fontWeight: FontWeight.normal,
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
+
+                       titleWidget()
+                      ],
+                    ),
+
+                  //
+                  // Text:description:,
+                )
+
+            ),
 
 
+            Container(
 
-                          child: titleWidget()),
-                    ],
+              height: (displayHeight (context))-
+                  (kToolbarHeight +
+                      6 + displayHeight(context)/4),
+              // 6 for spacing padding at top for .
+              width: displayWidth(context)
+                  -(200
+                      -(MediaQuery.of(context).size.width / 3.8)
                   ),
 
-                //
-                // Text:description:,
-              )
-
-          ),
-
-
-          Container(
-
-            height: (displayHeight (context))-
-                (kToolbarHeight +
-                    6 + displayHeight(context)/4),
-            // 6 for spacing padding at top for .
-            width: displayWidth(context)
-                -(200
-                    -(MediaQuery.of(context).size.width / 3.8)
-                ),
-
-            child: navigationButtonsWidget(),
+              child: navigationButtonsWidget(),
 
 
 
-          ),
-        ],
+            ),
+          ],
+        ),
+
+
       ),
-
-
     );
 
   }
