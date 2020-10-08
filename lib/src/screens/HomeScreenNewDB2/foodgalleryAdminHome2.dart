@@ -2,6 +2,7 @@
 //
 //```dart
 // package/ external dependency files
+import 'package:adminorderappnewdb/src/BLoC/clientPart/identity_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -140,6 +141,65 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
   var logger = Logger(
     printer: PrettyPrinter(),
   );
+
+
+
+
+  Future<void> logout(BuildContext context2) async {
+    print('what i do is : ||Logout||');
+
+
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.clear();
+//    THIS ALSO WORKS
+/*
+    Navigator.push(
+      context2,
+      MaterialPageRoute(builder: (context2) => WelcomePage()),
+    );
+    */
+
+//    return Navigator.push(context,
+//
+//        MaterialPageRoute(builder: (context)
+//        => FoodItemDetails(oneFoodItemData:oneFoodItem))
+//    );
+
+
+
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        opaque: false,
+        transitionDuration: Duration(milliseconds: 900),
+        pageBuilder: (_, __, ___) =>
+            BlocProvider<IdentityBloc>(
+              bloc: IdentityBloc(),
+              child: WelcomePage(),
+            ),
+      ),
+    );
+
+
+    /*
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (BuildContext context) {
+          return BlocProvider<IdentityBloc>(
+              bloc: IdentityBloc(),
+//AppBloc(emptyFoodItemWithDocID,loginPageIngredients,fromWhichPage:0),
+              child: WelcomePage(fromWhicPage: 'foodGallery2'));
+/*
+                                  return BlocProvider<FoodGalleryBloc>(
+                                      bloc: FoodGalleryBloc(),
+                                      child: FoodGallery2()
+
+                                  );
+                                  */
+        }), (Route<dynamic> route) => false);
+
+    */
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -508,6 +568,62 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
               */
                       // ),
                     ),
+
+                    SizedBox(
+                      height: 30,
+                    ),
+                    ListTile(
+                      title: Container(
+                          color: Color(0xffFFE18E),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child:
+                                Icon(
+                                  Icons.portrait,
+                                  size: displayWidth(context) / 19,
+                                  color: Color(0xff707070),
+                                ),
+
+
+
+
+
+
+
+                              ),
+
+                              Container(
+//                          width: displayWidth(context)/3.9,
+                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+
+                                child: Text(
+//                                  'maksamatta'.toUpperCase(),
+                                  'log out'.toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'poppins',
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              )
+//                      Text('history'),
+                            ],
+                          )),
+                      onTap: () {
+
+                        return logout(context);
+
+                      },
+                    ),
+                    SizedBox(
+                      height: 100,
+                    ),
+
+
                     ListTile(
                       title: Container(
                           color: Color(0xffFFE18E),
