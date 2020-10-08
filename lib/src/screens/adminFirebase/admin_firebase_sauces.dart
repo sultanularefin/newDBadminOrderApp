@@ -39,7 +39,8 @@ class _AddDataState extends State<AdminFirebaseSauces> {
   final GlobalKey<ScaffoldState> _scaffoldKeySauceItemAdmin = new GlobalKey<ScaffoldState>();
 
 
-  File _image;
+  // File _image;
+  PickedFile _image;
 
   final _formKey = GlobalKey<FormState>();
   var onlyDigitsAndPoints = FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'));
@@ -52,27 +53,30 @@ class _AddDataState extends State<AdminFirebaseSauces> {
 
   Future getImage() async {
 
-    var image = await ImagePicker.pickImage(
+    final picker = ImagePicker();
+
+    var image = await picker.getImage(
+      // var image = await ImagePicker.pickImage(
 //        source: ImageSource.camera
         source:ImageSource.gallery
     );
+
+//     var image = await ImagePicker.pickImage(
+// //        source: ImageSource.camera
+//         source:ImageSource.gallery
+//     );
 
     print('_image initially: $_image');
     print('image at getImage: $image');
 
     final blocAdminSauceFBase = BlocProvider.of<AdminFirebaseSauceBloc>(context);
-
-
-
+    
 
     blocAdminSauceFBase.setImage(image);
 
 
-
 //    final FirebaseAuth _auth = FirebaseAuth.instance;
 //    final FirebaseUser user = await _auth.currentUser();
-
-
 
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final User user = FirebaseAuth.instance.currentUser;
@@ -215,7 +219,8 @@ class _AddDataState extends State<AdminFirebaseSauces> {
 
                                               child: new Container(
                                                 padding: const EdgeInsets.all(0.0),
-                                                child: Image.file(_image),
+                                                // child: Image.file(_image),
+                                                child: Image.file(File(_image.path)),
 
                                               )
 

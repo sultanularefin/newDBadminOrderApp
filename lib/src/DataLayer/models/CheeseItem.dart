@@ -7,7 +7,6 @@
 //ALT + I
 //IN WINDOWS
 
-
 //import 'package:flutter/material.dart';
 /*
 import 'dart:core';
@@ -95,51 +94,42 @@ class CheeseItem implements Comparable {
 //ALT + I
 //IN WINDOWS
 
-
 //import 'package:flutter/material.dart';
 
 import 'dart:core';
-
-
-
 
 //    :imageURL= storageBucketURLPredicate +  Uri.decodeComponent(data['image']),
 import 'package:adminorderappnewdb/src/utilities/screen_size_reducers.dart';
 
 class CheeseItem implements Comparable {
-
   String cheeseItemName;
   String imageURL;
   double price;
   String documentId;
 
-  int    cheeseItemAmountByUser;
+  int cheeseItemAmountByUser;
   String itemId;
   int sequenceNo;
 //  final int    sl;
-  bool   isSelected;
+  bool isSelected;
   bool isDefaultSelected;
   bool isDeleted;
 
 //  String ingredients;
 
-  CheeseItem(
-      {
-        this.cheeseItemName,
-        this.imageURL,
-        this.price:0.0,
-        this.documentId,
-        this.cheeseItemAmountByUser,
-        this.itemId:'',
+  CheeseItem({
+    this.cheeseItemName,
+    this.imageURL,
+    this.price: 0.0,
+    this.documentId,
+    this.cheeseItemAmountByUser,
+    this.itemId: '',
 //        this.sl,
-        this.isSelected:false,
-        this.isDefaultSelected:false,
-        this.isDeleted: false,
-        this.sequenceNo,
-
-      }
-      );
-
+    this.isSelected: false,
+    this.isDefaultSelected: false,
+    this.isDeleted: false,
+    this.sequenceNo,
+  });
 
   @override
   int compareTo(other) {
@@ -166,18 +156,18 @@ class CheeseItem implements Comparable {
 
 //  NewIngredient.fromMap(Map<String, dynamic> data)
 //  NewIngredient.fromMap(Map<dynamic, dynamic> data)
-  CheeseItem.fromMap(Map<String, dynamic> data,String docID)
-     :imageURL= data['image'],
+  CheeseItem.fromMap(Map<String, dynamic> data, String docID)
+      : imageURL = data['image'],
 //       :imageURL= storageBucketURLPredicate + Uri.encodeComponent(data['image']),
 
 //      :imageURL= storageBucketURLPredicate +  Uri.decodeComponent(data['image']),
-        cheeseItemName= data['name'],
+        cheeseItemName = data['name'],
         price = data['price'].toDouble(),
         documentId = docID,
         cheeseItemAmountByUser = 0,
 //        sl = data['sl'],
-        isDeleted=false,
-        isSelected =false;
+        isDeleted = false,
+        isSelected = false;
 //
 //
 //  NewIngredient.updateIngredient(NewIngredient oneIngredient)
@@ -186,11 +176,6 @@ class CheeseItem implements Comparable {
 //        price = oneIngredient.price,
 //        documentId = oneIngredient.documentId,
 //        ingredientAmountByUser = 0;
-
-
-
-
-
 
 //        ingredientAmountByUser = 1;
 

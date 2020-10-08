@@ -12,9 +12,11 @@ import 'dart:ui';
 // import 'package:firebase_core/firebase_core.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 //MODELS
 import 'package:adminorderappnewdb/src/DataLayer/models/NewCategoryItem.dart';
+import 'package:mime_type/mime_type.dart';
 
 
 class AdminFirebaseIngredientBloc implements Bloc {
@@ -52,7 +54,8 @@ class AdminFirebaseIngredientBloc implements Bloc {
   // multiselect category controller codes ends here .....
 
 
-  File _image2;
+//  File _image2;
+  PickedFile _image2;
   String _firebaseUserEmail;
 
 
@@ -85,7 +88,7 @@ class AdminFirebaseIngredientBloc implements Bloc {
 
   bool newsletter = false;
 
-  void setImage(File localURL) {
+  void setImage(PickedFile localURL/*File localURL */) {
     print('localURL : $localURL');
 
     _image2 = localURL;
@@ -107,6 +110,23 @@ class AdminFirebaseIngredientBloc implements Bloc {
     _ingredientItemController.sink.add(_thisIngredientItem);
   }
 
+  String shortendCase(var text) {
+
+
+    print("text: $text");
+    if (text is num) {
+      return text.toString();
+    } else if (text == null) {
+      return '';
+    } else if (text.length <= 1) {
+      return text.toUpperCase();
+    } else {
+      return text
+          .split(' ')
+          .map((word) => word[0].toUpperCase() + word.substring(1))
+          .join('_');
+    }
+  }
   void setItemName(var param) {
 
     logger.w('ingredient Name: $param');
@@ -142,7 +162,7 @@ class AdminFirebaseIngredientBloc implements Bloc {
   String titleCase(var text) {
 
 
-     print("text: $text");
+    print("text: $text");
     if (text is num) {
       return text.toString();
     } else if (text == null) {
@@ -177,9 +197,9 @@ class AdminFirebaseIngredientBloc implements Bloc {
     print('extraIngredientOf2.length: ${extraIngredientOf2.length}');
 
 
-   NewIngredient temp = _thisIngredientItem;
+    NewIngredient temp = _thisIngredientItem;
 
-   temp.extraIngredientOf = extraIngredientOf2;
+    temp.extraIngredientOf = extraIngredientOf2;
 
     _thisIngredientItem = temp;
     _ingredientItemController.sink.add(_thisIngredientItem);
@@ -235,10 +255,17 @@ class AdminFirebaseIngredientBloc implements Bloc {
 
     print('_image2: $_image2');
 
+    File x = File(_image2.path);
+
+    String mimeType = mime(_image2.path);
+    logger.i('mimeType................... $mimeType');
+
+    if (mimeType == null) mimeType = 'text/plain; charset=UTF-8';
     StorageUploadTask uploadTask = storageReference_1.putFile(
-      _image2,
+//       _image2,
+      File(_image2.path),
       StorageMetadata(
-          contentType: 'image/jpg',
+          contentType:  mimeType,
           cacheControl: 'no-store', // disable caching
           customMetadata: {
             'itemName': itemName,

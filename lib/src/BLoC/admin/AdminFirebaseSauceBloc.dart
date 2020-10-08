@@ -1,5 +1,6 @@
 import 'package:adminorderappnewdb/src/BLoC/bloc.dart';
 import 'package:adminorderappnewdb/src/DataLayer/api/firebase_clientAdmin.dart';
+import 'package:adminorderappnewdb/src/DataLayer/models/NewIngredient.dart';
 import 'package:adminorderappnewdb/src/DataLayer/models/SauceItem.dart';
 
 
@@ -8,10 +9,11 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:math';
 import 'package:logger/logger.dart';
-
+import 'package:image_picker/image_picker.dart';
 
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:mime_type/mime_type.dart';
 
 //MODELS
 
@@ -23,7 +25,8 @@ class AdminFirebaseSauceBloc implements Bloc {
   );
 
 
-  File _image2;
+  // File _image2;
+  PickedFile _image2;
   String _firebaseUserEmail;
 
 
@@ -52,7 +55,7 @@ class AdminFirebaseSauceBloc implements Bloc {
 
   bool newsletter = false;
 
-  void setImage(File localURL) {
+  void setImage(PickedFile localURL/*File localURL */) {
     print('localURL : $localURL');
     _image2 = localURL;
   }
@@ -124,6 +127,28 @@ class AdminFirebaseSauceBloc implements Bloc {
   }
 
 
+  /*
+void setIngredientName(var ingredientName) {
+
+    logger.w('ingredient Name: $ingredientName');
+
+    NewIngredient temp = new NewIngredient();
+    temp = _thisIngredientItem;
+    temp.ingredientName = ingredientName;
+    temp.ingredientNameShort =  shortendCase(ingredientName);
+
+    // temp.fireStoreFieldName = shortendCase(shortCategoryName);
+
+
+    _thisIngredientItem = temp;
+
+    _ingredientItemController.sink.add(_thisIngredientItem);
+
+
+  }
+
+  */
+
   Future<String> _uploadFile(String itemId, itemName) async {
     print('at _uploadFile: ');
 
@@ -134,11 +159,21 @@ class AdminFirebaseSauceBloc implements Bloc {
         .child(itemName +'__'+itemId + '.png');
 
     print('_image2: $_image2');
+    
+     File x = File(_image2.path);
+
+    String mimeType = mime(_image2.path);
+    logger.i('mimeType................... $mimeType');
+
+    if (mimeType == null) mimeType = 'text/plain; charset=UTF-8';
+
+
 
     StorageUploadTask uploadTask = storageReference_1.putFile(
-      _image2,
+      // _image2,
+      File(_image2.path),
       StorageMetadata(
-          contentType: 'image/jpg',
+          contentType: mimeType,
           cacheControl: 'no-store', // disable caching
           customMetadata: {
             'itemName': itemName,

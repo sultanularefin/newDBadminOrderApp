@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:linkupadminolddb/src/BLoC/bloc_provider.dart';
-import 'package:linkupadminolddb/src/identity/Widget/bezierContainer.dart';
-import 'package:linkupadminolddb/src/identity/loginPage.dart';
-import 'package:linkupadminolddb/src/BLoC/clientPart/identity_bloc.dart';
-import 'package:linkupadminolddb/src/screens/HomeScreenNewDB2/foodgalleryAdminHome2.dart';
+import 'package:adminorderappnewdb/src/BLoC/bloc_provider.dart';
+import 'package:adminorderappnewdb/src/identity/Widget/bezierContainer.dart';
+import 'package:adminorderappnewdb/src/identity/loginPage.dart';
+import 'package:adminorderappnewdb/src/BLoC/clientPart/identity_bloc.dart';
+import 'package:adminorderappnewdb/src/screens/HomeScreenNewDB2/foodgalleryAdminHome2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'dart:convert';

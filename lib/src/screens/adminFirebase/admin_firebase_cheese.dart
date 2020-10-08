@@ -50,7 +50,9 @@ class _AddDataState extends State<AdminFirebaseCheese> {
   final GlobalKey<ScaffoldState> _scaffoldKeyCheeseItemAdmin = new GlobalKey<ScaffoldState>();
 
 //  _AddDataState({firestore});
-  File _image;
+//   File _image;
+  PickedFile _image;
+
 
   final _formKey = GlobalKey<FormState>();
   var onlyDigitsAndPoints = FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'));
@@ -60,10 +62,14 @@ class _AddDataState extends State<AdminFirebaseCheese> {
   int _currentCategory= 0;
   bool _loadingState = false;
 
+  TextEditingController foodItemEditingController = new TextEditingController();
 
   Future getImage() async {
 
-    var image = await ImagePicker.pickImage(
+    final picker = ImagePicker();
+
+    var image = await picker.getImage(
+    // var image = await ImagePicker.pickImage(
 //        source: ImageSource.camera
         source:ImageSource.gallery
     );
@@ -203,7 +209,8 @@ class _AddDataState extends State<AdminFirebaseCheese> {
 
                                               child: new Container(
                                                 padding: const EdgeInsets.all(0.0),
-                                                child: Image.file(_image),
+                                                // child: Image.file(_image),
+                                                child: Image.file(File(_image.path)),
 
                                               )
 

@@ -307,7 +307,107 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
                         width: displayWidth(context) -
                             MediaQuery.of(context).size.width / 3.8,
                         height: displayHeight(context) + kToolbarHeight + 10,
-                        child: navigationButtonsAndDescription(context),
+                        child: Column(
+                          children: [
+
+                            Container(
+
+                                child:
+                                displayHeight(context)>800?
+                                Container(
+                                  // color:Colors.pink,
+                                    height:
+                                    displayHeight(context)/3,
+                                    // 6 for spacing padding at top for .
+                                    width: displayWidth(context)-
+
+                                        (MediaQuery.of(context).size.width / 3.8)
+                                    ,
+                                    margin: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+
+                                    padding:
+                                    EdgeInsets.only(left: 4, top: 3, bottom: 3, right: 3),
+                                    child:
+                                    Container(
+
+                                      alignment: Alignment.center,
+                                      width: displayWidth(context) / 1.7,
+                                      decoration: BoxDecoration(
+                                        // color: Color(0xffFFE18E),
+                                        color:Colors.blueGrey,
+
+
+                                        border: Border.all(
+                                          color: Colors.black,
+                                          style: BorderStyle.solid,
+                                          width: 0.2,
+                                        ),
+
+                                        borderRadius: BorderRadius.all(Radius.circular(14)),
+                                      ),
+
+
+
+                                      // color:Colors.blueGrey,
+
+                                      child:  Column(
+
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            // 'about this app: '.toUpperCase(),
+                                            'about this app: ',
+                                            style: TextStyle(
+                                              // color: Colors.blueGrey,
+                                              color: Color(0xff07D607),
+                                              fontFamily: 'poppins',
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 39,
+                                            ),
+                                          ),
+
+                                          Container(
+                                            padding:
+                                            EdgeInsets.only(left: 4, top: 5, bottom: 0, right: 4),
+
+                                            child: Text(
+                                              // 'order app for old db clent app also uses the same db'.toUpperCase(),
+                                              'this application is an admin app for uploading food items for a restaurant system,'
+                                                  ' it is based on, the new database. '
+                                                  'The same database is used by the client application which '
+                                                  'is partially developped and also the new order app.',
+
+                                              textAlign: TextAlign.justify,
+                                              style: TextStyle(
+
+                                                color: Colors.black87,
+                                                fontFamily: 'poppins',
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 25,
+                                              ),
+                                            ),
+                                          ),
+
+                                          Container(
+
+
+
+                                              child: titleWidget()),
+                                        ],
+                                      ),
+
+                                      //
+                                      // Text:description:,
+                                    )
+
+                                ):Text('the app was designed for 10-inch tablet (e.g. Samsung Galaxy '
+                                    'Tab S6 or emulators where screen size is 10-inch )')
+
+                            ),
+                            navigationButtonsAndDescription(context),
+                          ],
+                        ),
                       ),
                       Container(
                         height: displayHeight(context) + kToolbarHeight + 10,
@@ -578,94 +678,7 @@ class _FoodGalleryState extends State<FoodGalleryAdminHome2> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
-          Container(
-            // color:Colors.pink,
-              height:
-              displayHeight(context)/3,
-              // 6 for spacing padding at top for .
-              width: displayWidth(context)-
 
-                  (MediaQuery.of(context).size.width / 3.8)
-              ,
-              margin: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-
-              padding:
-              EdgeInsets.only(left: 4, top: 3, bottom: 3, right: 3),
-              child:
-              Container(
-
-                alignment: Alignment.center,
-                width: displayWidth(context) / 1.7,
-                decoration: BoxDecoration(
-                  // color: Color(0xffFFE18E),
-                  color:Colors.blueGrey,
-
-
-                    border: Border.all(
-                      color: Colors.black,
-                      style: BorderStyle.solid,
-                      width: 0.2,
-                    ),
-
-                    borderRadius: BorderRadius.all(Radius.circular(14)),
-                  ),
-
-
-
-                  // color:Colors.blueGrey,
-
-                  child:  Column(
-
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        // 'about this app: '.toUpperCase(),
-                        'about this app: ',
-                        style: TextStyle(
-                          // color: Colors.blueGrey,
-                          color: Color(0xff07D607),
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 39,
-                        ),
-                      ),
-
-                      Container(
-                        padding:
-                        EdgeInsets.only(left: 4, top: 5, bottom: 0, right: 4),
-
-                        child: Text(
-                          // 'order app for old db clent app also uses the same db'.toUpperCase(),
-                          'this application is an admin app for uploading food items for a restaurant system,'
-                              ' it is based on, the new database. '
-                              'The same database is used by the client application which '
-                              'is partially developped and also the new order app.',
-
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-
-                            color: Colors.black87,
-                            fontFamily: 'poppins',
-                            fontWeight: FontWeight.normal,
-                            fontSize: 25,
-                          ),
-                        ),
-                      ),
-
-                      Container(
-
-
-
-                          child: titleWidget()),
-                    ],
-                  ),
-
-                //
-                // Text:description:,
-              )
-
-          ),
 
 
           Container(

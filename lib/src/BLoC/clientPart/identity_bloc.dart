@@ -108,8 +108,32 @@ class IdentityBloc implements Bloc {
 // CONSTRUCTOR ENDS HERE.
 
 
+
+
 //  Future<AuthResult> handleSignInFromLoginPage(String email,
 //      String password) async {
+
+
+
+  Future<UserCredential> signUpWithEmailAndPassword(String email,
+      String password) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email.trim(),
+          password: password.trim());
+
+      print('result: $result');
+      User user = result.user;
+      // return _userFromFirebaseUser(user);
+
+      return result;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+
 
   Future<UserCredential> handleSignInFromLoginPage(String email,
       String password) async {

@@ -48,7 +48,8 @@ class _AddDataState extends State<AdminFirebaseIngredient> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   _AddDataState({firestore});
-  File _image;
+//  File _image;
+  PickedFile _image;
 
   final _formKey = GlobalKey<FormState>();
   var onlyDigitsAndPoints = FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'));
@@ -59,9 +60,16 @@ class _AddDataState extends State<AdminFirebaseIngredient> {
   bool _loadingState = false;
 
 
+  final picker = ImagePicker();
+
+
+  TextEditingController ingredientEditingController = new TextEditingController();
+  TextEditingController priceEditingController = new TextEditingController();
+  // TextEditingController usernameEditingController =  new TextEditingController();
   Future getImage() async {
 
-    var image = await ImagePicker.pickImage(
+    var image = await picker.getImage(
+      // await ImagePicker.pickImage(
 //        source: ImageSource.camera
         source:ImageSource.gallery
     );
@@ -417,7 +425,8 @@ class _AddDataState extends State<AdminFirebaseIngredient> {
 
                                             child: new Container(
                                               padding: const EdgeInsets.all(0.0),
-                                              child: Image.file(_image),
+                                              // child: Image.file(_image),
+                                              child: Image.file(File(_image.path)),
 
                                             )
 
@@ -439,6 +448,7 @@ class _AddDataState extends State<AdminFirebaseIngredient> {
 
                                           ),
                                         ),
+                                        controller: ingredientEditingController,
                                         validator: (value) {
 
                                           return value.isEmpty? 'please enter the ingredient Name.' : null;
@@ -563,6 +573,7 @@ class _AddDataState extends State<AdminFirebaseIngredient> {
                                                     return 'Please enter price';
                                                   }
                                                 },
+                                                controller: priceEditingController,
                                                 textInputAction: TextInputAction.done,
 //                                                    onSubmitted: (_) => FocusScope.of(context).unfocus(),
                                                 textAlign: TextAlign.center,
@@ -667,7 +678,8 @@ class _AddDataState extends State<AdminFirebaseIngredient> {
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 10.0, horizontal: 10.0),
                                           child: RaisedButton(
-                                              color: Colors.yellowAccent,
+                                            // color: Colors.yellowAccent,
+                                              color: Color(0xffB8D03F),
                                               onPressed: () async {
                                                 final form = _formKey.currentState;
 

@@ -3,7 +3,7 @@ import 'package:adminorderappnewdb/src/DataLayer/api/firebase_clientAdmin.dart';
 import 'package:adminorderappnewdb/src/DataLayer/models/CheeseItem.dart';
 import 'package:adminorderappnewdb/src/DataLayer/models/NewIngredient.dart';
 import 'package:adminorderappnewdb/src/DataLayer/models/SauceItem.dart';
-
+import 'package:image_picker/image_picker.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
 import 'dart:async';
@@ -21,6 +21,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:adminorderappnewdb/src/DataLayer/models/FoodItemWithDocID.dart';
 
 import 'package:adminorderappnewdb/src/DataLayer/models/NewCategoryItem.dart';
+import 'package:mime_type/mime_type.dart';
 
 
 
@@ -58,7 +59,8 @@ class AdminFirebaseFoodBloc implements Bloc {
   Stream<List<NewCategoryItem>> get getCategoryDropDownControllerStream =>
       _categoryDropDownController.stream;
 
-  File _image2;
+//  File _image2;
+PickedFile _image2;
   String _firebaseUserEmail;
 
 //  String categoryName = 'PIZZA'.toLowerCase();
@@ -119,7 +121,7 @@ class AdminFirebaseFoodBloc implements Bloc {
 
   bool newsletter = false;
 
-  void setImage(File localURL) {
+  void setImage(/*File localURL */ PickedFile localURL) {
     print('localURL : $localURL');
     _image2 = localURL;
   }
@@ -213,6 +215,24 @@ class AdminFirebaseFoodBloc implements Bloc {
     }
   }
 
+  String shortendCase(var text) {
+
+
+    print("text: $text");
+    if (text is num) {
+      return text.toString();
+    } else if (text == null) {
+      return '';
+    } else if (text.length <= 1) {
+      return text.toUpperCase();
+    } else {
+      return text
+          .split(' ')
+          .map((word) => word[0].toUpperCase() + word.substring(1))
+          .join('_');
+    }
+  }
+
   Future<String> _uploadFile(String itemId, itemName,String categoryName2) async {
     print('at _uploadFile: ');
 
@@ -227,10 +247,17 @@ class AdminFirebaseFoodBloc implements Bloc {
 
     print('_image2: $_image2');
 
+ File x = File(_image2.path);
+
+    String mimeType = mime(_image2.path);
+    logger.i('mimeType................... $mimeType');
+
+    if (mimeType == null) mimeType = 'text/plain; charset=UTF-8';
     StorageUploadTask uploadTask = storageReference_1.putFile(
-      _image2,
+//      _image2,
+File(_image2.path),
       StorageMetadata(
-          contentType: 'image/jpg',
+          contentType:  mimeType,  //'image/jpg',
           cacheControl: 'no-store', // disable caching
           customMetadata: {
             'itemName': itemName,

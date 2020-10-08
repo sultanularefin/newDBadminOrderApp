@@ -69,7 +69,8 @@ class _AddDataState extends State<AdminFirebaseFood> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   _AddDataState({firestore});
-  File _image;
+  // File _image;
+  PickedFile _image;
 
 
   final _formKey = GlobalKey<FormState>();
@@ -79,6 +80,9 @@ class _AddDataState extends State<AdminFirebaseFood> {
   String token= '';
 
 
+
+  TextEditingController foodItemEditingController = new TextEditingController();
+  // TextEditingController shortCategoryEditingController = new TextEditingController();
 
 
 //  void setCategoryValue(int categoryValue){
@@ -661,7 +665,9 @@ class _AddDataState extends State<AdminFirebaseFood> {
 
     final blocAdminFoodFBase = BlocProvider.of<AdminFirebaseFoodBloc>(context);
 
-    var image = await ImagePicker.pickImage(
+    final picker = ImagePicker();
+
+    var image = await picker.getImage(
 //        source: ImageSource.camera
         source:ImageSource.gallery
     );
@@ -741,6 +747,9 @@ class _AddDataState extends State<AdminFirebaseFood> {
                     token = currentFood.urlAndTokenForStorageImage;
                     _currentCategory = currentFood.categoryIndex == null?0:currentFood.categoryIndex;
 
+                    if(currentFood.itemName==''){
+                      foodItemEditingController.clear();
+                    }
                     return Builder(
                         builder: (context) =>
                             Form(
@@ -804,7 +813,8 @@ class _AddDataState extends State<AdminFirebaseFood> {
 
                                             child: new Container(
                                               padding: const EdgeInsets.all(0.0),
-                                              child: Image.file(_image),
+                                              // child: Image.file(_image),
+                                              child: Image.file(File(_image.path)),
 
                                             )
 
@@ -828,6 +838,7 @@ class _AddDataState extends State<AdminFirebaseFood> {
 
                                           ),
                                         ),
+                                        controller: foodItemEditingController,
                                         validator: (value) {
                                           return value.isEmpty? 'please enter the fooditem name.' : null;
 //                                          if (value.isEmpty) {
@@ -900,7 +911,7 @@ class _AddDataState extends State<AdminFirebaseFood> {
 
                                                     return DropdownButtonFormField(
 
-                                                      value: allCategories[_currentCategory]
+                                                        value: allCategories[_currentCategory]
                                                             .sequenceNo,
 //                                                        value: _currentCategory ,
 //                                                        _currentCategory
